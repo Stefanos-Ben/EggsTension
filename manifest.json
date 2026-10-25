@@ -1,0 +1,9 @@
+{
+    "name": "EggsTension",
+    "description": "A simple extension that holds a timer for boiling your eggs.",
+    "version" : "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "timer.html"
+    }
+}
