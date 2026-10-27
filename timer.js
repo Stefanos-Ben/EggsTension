@@ -24,24 +24,36 @@ function updateTimer() {
         timerDisplay.innerHTML = trusted
     }
     else console.log("Not trusted")
+};
+
+function runTimer() {
+    isRunning = true;
+    startButton.textContent = "Stop";     
+    interval = setInterval(() => {
+        if (seconds > 0 || minutes > 0) {
+            if(seconds > 0 && minutes > 0)seconds--;
+            if (seconds === 0 && minutes > 0 ) {
+                seconds = 59;
+                minutes--;
+            }
+            updateTimer();
+        }           
+    }, 1000);
+}
+
+function navigateTo(view) {
+    if (view === 'timer') {
+        selectionView.classList.add('hidden');
+        timerView.classList.remove('hidden');
+    } else {
+        timerView.classList.add('hidden');
+        selectionView.classList.remove('hidden');
+    }
 }
 
 startButton.addEventListener("click", function() {
     if(!isRunning) {
-        isRunning = true;
-        startButton.textContent = "Stop";        
-        interval = setInterval(() => {
-            
-            if (seconds > 0 || minutes > 0) {
-                if(seconds > 0 && minutes > 0)seconds--;
-                if (seconds === 0 && minutes > 0 ) {
-                    seconds = 59;
-                    minutes--;
-                }
-                updateTimer();
-            }
-            
-        }, 1000)
+        runTimer();
     }   else {
             clearInterval(interval);
             isRunning = false;
@@ -56,8 +68,7 @@ resetButton.addEventListener("click", function() {
     seconds = 0;
     updateTimer();
     startButton.textContent = "Start";
-    timerView.classList.add('hidden');
-    selectionView.classList.remove('hidden');
+    navigateTo('selection');
 });
 
 softButton.addEventListener("click", function() {
@@ -66,9 +77,9 @@ softButton.addEventListener("click", function() {
     minutes = 6;
     seconds = 0;
     updateTimer();
+    runTimer();
     startButton.textContent = "Start";
-    selectionView.classList.add('hidden');
-    timerView.classList.remove('hidden');
+    navigateTo('timer');
 });
 
 jammyButton.addEventListener("click", function() {
@@ -78,8 +89,7 @@ jammyButton.addEventListener("click", function() {
     seconds = 0;
     updateTimer();
     startButton.textContent = "Start";
-    selectionView.classList.add('hidden');
-    timerView.classList.remove('hidden');
+    navigateTo('timer');
 });
 
 mediumButton.addEventListener("click", function() {
@@ -89,8 +99,7 @@ mediumButton.addEventListener("click", function() {
     seconds = 0;
     updateTimer();
     startButton.textContent = "Start";
-    selectionView.classList.add('hidden');
-    timerView.classList.remove('hidden');
+    navigateTo('timer');
 });
 
 hardButton.addEventListener("click", function() {
@@ -100,6 +109,5 @@ hardButton.addEventListener("click", function() {
     seconds = 0;
     updateTimer();
     startButton.textContent = "Start";
-    selectionView.classList.add('hidden');
-    timerView.classList.remove('hidden');
+    navigateTo('timer');
 });
