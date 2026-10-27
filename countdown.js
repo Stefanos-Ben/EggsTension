@@ -1,4 +1,8 @@
 const timerDisplay = document.getElementById("time");
+const startButton = document.getElementById("startBtn");
+const resetButton = document.getElementById("resetBtn");
+const fiveButton = document.getElementById("fiveBtn");
+const tenButton = document.getElementById("tenBtn");
 
 const escapeHTMLPolicy = trustedTypes.createPolicy("myEscapePolicy", {
   createHTML: (string) => string.replace(/\</g, "&lt;"),
@@ -6,7 +10,7 @@ const escapeHTMLPolicy = trustedTypes.createPolicy("myEscapePolicy", {
 
 let isRunning = false;
 let interval;
-let minutes = 2;
+let minutes = 0;
 let seconds = 0;
 
 function updateTimer() {
@@ -18,20 +22,52 @@ function updateTimer() {
     else console.log("Not trusted")
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    interval = setInterval(() => {
-        if(!isRunning) isRunning = true;
-        if (seconds > 0 || minutes > 0) {
-            if(seconds > 0 && minutes > 0)seconds--;
-            if (seconds === 0 && minutes > 0 ) {
-                seconds = 59;
-                minutes--;
+startButton.addEventListener("click", function() {
+    if(!isRunning) {
+        isRunning = true;
+        startButton.textContent = "Stop";        
+        interval = setInterval(() => {
+            
+            if (seconds > 0 || minutes > 0) {
+                if(seconds > 0 && minutes > 0)seconds--;
+                if (seconds === 0 && minutes > 0 ) {
+                    seconds = 59;
+                    minutes--;
+                }
+                updateTimer();
             }
-            updateTimer();
-        }
-        else {
+            
+        }, 1000)
+    }   else {
             clearInterval(interval);
             isRunning = false;
+            startButton.textContent = "Start";
         }
-    }, 1000)
 });
+
+resetButton.addEventListener("click", function() {
+    clearInterval(interval);
+    isRunning = false;
+    minutes = 0;
+    seconds = 0;
+    updateTimer();
+    startButton.textContent = "Start";
+});
+
+fiveButton.addEventListener("click", function() {
+    clearInterval(interval);
+    isRunning = false;
+    minutes = 5;
+    seconds = 0;
+    updateTimer();
+    startButton.textContent = "Start";
+});
+
+tenButton.addEventListener("click", function() {
+    clearInterval(interval);
+    isRunning = false;
+    minutes = 10;
+    seconds = 0;
+    updateTimer();
+    startButton.textContent = "Start"; 
+})
