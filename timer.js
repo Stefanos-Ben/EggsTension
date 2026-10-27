@@ -29,8 +29,8 @@ function runTimer() {
     isRunning = true;    
     interval = setInterval(() => {
         if (seconds > 0 || minutes > 0) {
-            if(seconds > 0 && minutes > 0)seconds--;
-            if (seconds === 0 && minutes > 0 ) {
+            if (seconds >= 0) seconds-- ;
+            if (seconds < 0 && minutes > 0 ) {
                 seconds = 59;
                 minutes--;
             }
