@@ -1,8 +1,12 @@
 const timerDisplay = document.getElementById("time");
 const startButton = document.getElementById("startBtn");
 const resetButton = document.getElementById("resetBtn");
-const fiveButton = document.getElementById("fiveBtn");
-const tenButton = document.getElementById("tenBtn");
+const softButton = document.getElementById("softBtn");
+const jammyButton = document.getElementById("jammyBtn");
+const mediumButton = document.getElementById("mediumBtn");
+const hardButton = document.getElementById("hardBtn");
+const timerView = document.getElementById("timer-view");
+const selectionView = document.getElementById("selection-view");
 
 const escapeHTMLPolicy = trustedTypes.createPolicy("myEscapePolicy", {
   createHTML: (string) => string.replace(/\</g, "&lt;"),
@@ -52,22 +56,50 @@ resetButton.addEventListener("click", function() {
     seconds = 0;
     updateTimer();
     startButton.textContent = "Start";
+    timerView.classList.add('hidden');
+    selectionView.classList.remove('hidden');
 });
 
-fiveButton.addEventListener("click", function() {
+softButton.addEventListener("click", function() {
     clearInterval(interval);
     isRunning = false;
-    minutes = 5;
+    minutes = 6;
     seconds = 0;
     updateTimer();
     startButton.textContent = "Start";
+    selectionView.classList.add('hidden');
+    timerView.classList.remove('hidden');
 });
 
-tenButton.addEventListener("click", function() {
+jammyButton.addEventListener("click", function() {
+    clearInterval(interval);
+    isRunning = false;
+    minutes = 8;
+    seconds = 0;
+    updateTimer();
+    startButton.textContent = "Start";
+    selectionView.classList.add('hidden');
+    timerView.classList.remove('hidden');
+});
+
+mediumButton.addEventListener("click", function() {
     clearInterval(interval);
     isRunning = false;
     minutes = 10;
     seconds = 0;
     updateTimer();
-    startButton.textContent = "Start"; 
-})
+    startButton.textContent = "Start";
+    selectionView.classList.add('hidden');
+    timerView.classList.remove('hidden');
+});
+
+hardButton.addEventListener("click", function() {
+    clearInterval(interval);
+    isRunning = false;
+    minutes = 12;
+    seconds = 0;
+    updateTimer();
+    startButton.textContent = "Start";
+    selectionView.classList.add('hidden');
+    timerView.classList.remove('hidden');
+});

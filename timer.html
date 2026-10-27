@@ -1,10 +1,21 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="timer.css">
+    </head>
     <body>
-        <h1 id="time">00:00</h1>
-        <button id="startBtn" class="button">Start</button>
-        <button id="resetBtn" class="button">Reset</button>
-        <button id="fiveBtn" class="button">5:00</button>
-        <button id="tenBtn" class="button">10:00</button>
+        <div id="selection-view">
+            <button id="softBtn" class="button">Soft Boiled</button>
+            <button id="jammyBtn" class="button">Jammy</button>
+            <button id="mediumBtn" class="button">Medium</button>
+            <button id="hardBtn" class="button">Hard Boiled</button>
+        </div>
+        <div id="timer-view" class="hidden">
+            <h1 id="time">00:00</h1>
+            <button id="startBtn" class="button">Start</button>
+            <button id="resetBtn" class="button">Reset</button>
+        </div>
+        
+
         <script src="countdown.js"></script>
     </body>
 </html>
