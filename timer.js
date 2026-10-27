@@ -1,5 +1,4 @@
 const timerDisplay = document.getElementById("time");
-const startButton = document.getElementById("startBtn");
 const resetButton = document.getElementById("resetBtn");
 const softButton = document.getElementById("softBtn");
 const jammyButton = document.getElementById("jammyBtn");
@@ -27,8 +26,7 @@ function updateTimer() {
 };
 
 function runTimer() {
-    isRunning = true;
-    startButton.textContent = "Stop";     
+    isRunning = true;    
     interval = setInterval(() => {
         if (seconds > 0 || minutes > 0) {
             if(seconds > 0 && minutes > 0)seconds--;
@@ -46,59 +44,38 @@ function navigateTo(view) {
         selectionView.classList.add('hidden');
         timerView.classList.remove('hidden');
     } else {
+        clearInterval(interval);
         timerView.classList.add('hidden');
         selectionView.classList.remove('hidden');
     }
 }
 
-startButton.addEventListener("click", function() {
-    if(!isRunning) {
-        runTimer();
-    }   else {
-            clearInterval(interval);
-            isRunning = false;
-            startButton.textContent = "Start";
-        }
-});
-
 resetButton.addEventListener("click", function() {
-    clearInterval(interval);
     isRunning = false;
-    minutes = 0;
-    seconds = 0;
-    updateTimer();
-    startButton.textContent = "Start";
     navigateTo('selection');
 });
 
 softButton.addEventListener("click", function() {
-    clearInterval(interval);
-    isRunning = false;
     minutes = 6;
     seconds = 0;
     updateTimer();
     runTimer();
-    startButton.textContent = "Start";
     navigateTo('timer');
 });
 
 jammyButton.addEventListener("click", function() {
-    clearInterval(interval);
-    isRunning = false;
     minutes = 8;
     seconds = 0;
     updateTimer();
-    startButton.textContent = "Start";
+    runTimer();
     navigateTo('timer');
 });
 
 mediumButton.addEventListener("click", function() {
-    clearInterval(interval);
-    isRunning = false;
     minutes = 10;
     seconds = 0;
     updateTimer();
-    startButton.textContent = "Start";
+    runTimer();
     navigateTo('timer');
 });
 
@@ -108,6 +85,6 @@ hardButton.addEventListener("click", function() {
     minutes = 12;
     seconds = 0;
     updateTimer();
-    startButton.textContent = "Start";
+    runTimer();
     navigateTo('timer');
 });
