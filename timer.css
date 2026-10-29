@@ -1,3 +1,9 @@
 .hidden {
     display: none;
 }
+
+.eggif {
+    width: 128px;
+    height: 128px;
+    image-rendering: pixelated;
+}
